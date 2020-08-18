@@ -12,8 +12,6 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        class Vehicle {
         /**
          简单值
          */
@@ -706,11 +704,7 @@ class ViewController: UIViewController {
         let triangleAndSquare = TriangleAndSquare(size: 10, name: "another test shape")
         print(triangleAndSquare.square.sideLength)
         print(triangleAndSquare.triangle.sideLength)
-        
-        
     }
-
-
 }
 
 /**
