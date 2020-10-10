@@ -29,6 +29,7 @@
 		6145C9E024EFEF1D00345EAD /* NestedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145C9DF24EFEF1D00345EAD /* NestedType.swift */; };
 		6148EEA724D052BF003838D7 /* OptionalChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6148EEA624D052BF003838D7 /* OptionalChain.swift */; };
 		6155982324CF06E700F69576 /* DeinitProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6155982224CF06E700F69576 /* DeinitProcess.swift */; };
+		617382DF250C73DB00B842DB /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617382DE250C73DB00B842DB /* Protocol.swift */; };
 		61AFD5A32493ACCE006C9E93 /* Inherit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AFD5A22493ACCE006C9E93 /* Inherit.swift */; };
 		61D4CFB024D2BB8F00696327 /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D4CFAF24D2BB8F00696327 /* ErrorHandling.swift */; };
 /* End PBXBuildFile section */
@@ -79,6 +80,7 @@
 		6145C9DF24EFEF1D00345EAD /* NestedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedType.swift; sourceTree = "<group>"; };
 		6148EEA624D052BF003838D7 /* OptionalChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalChain.swift; sourceTree = "<group>"; };
 		6155982224CF06E700F69576 /* DeinitProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeinitProcess.swift; sourceTree = "<group>"; };
+		617382DE250C73DB00B842DB /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		61AFD5A22493ACCE006C9E93 /* Inherit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inherit.swift; sourceTree = "<group>"; };
 		61D4CFAF24D2BB8F00696327 /* ErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,6 +152,7 @@
 				6145C9DD24EFC3D600345EAD /* TypeConversion.swift */,
 				6145C9DF24EFEF1D00345EAD /* NestedType.swift */,
 				6132AD97250A289F00BABCD8 /* Extension.swift */,
+				617382DE250C73DB00B842DB /* Protocol.swift */,
 				613CC0DF2480EB6D00E1AC86 /* Main.storyboard */,
 				613CC0E22480EB7000E1AC86 /* Assets.xcassets */,
 				613CC0E42480EB7000E1AC86 /* LaunchScreen.storyboard */,
@@ -326,6 +329,7 @@
 				6125F68724892268000320AC /* ClassAndStruct.swift in Sources */,
 				6145C9DE24EFC3D600345EAD /* TypeConversion.swift in Sources */,
 				6125F68B248922BD000320AC /* Method.swift in Sources */,
+				617382DF250C73DB00B842DB /* Protocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
