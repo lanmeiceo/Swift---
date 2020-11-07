@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		610A618324B346D9008491F0 /* ConstructionProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610A618224B346D8008491F0 /* ConstructionProcess.swift */; };
+		61234F0B2535C3E200134D0C /* UnClearType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61234F0A2535C3E200134D0C /* UnClearType.swift */; };
 		6125F681248921DB000320AC /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6125F680248921DB000320AC /* Function.swift */; };
 		6125F6832489220F000320AC /* Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6125F6822489220F000320AC /* Closure.swift */; };
 		6125F68524892230000320AC /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6125F68424892230000320AC /* Enum.swift */; };
@@ -54,6 +55,7 @@
 
 /* Begin PBXFileReference section */
 		610A618224B346D8008491F0 /* ConstructionProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructionProcess.swift; sourceTree = "<group>"; };
+		61234F0A2535C3E200134D0C /* UnClearType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnClearType.swift; sourceTree = "<group>"; };
 		6125F680248921DB000320AC /* Function.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
 		6125F6822489220F000320AC /* Closure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Closure.swift; sourceTree = "<group>"; };
 		6125F68424892230000320AC /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				6132AD97250A289F00BABCD8 /* Extension.swift */,
 				617382DE250C73DB00B842DB /* Protocol.swift */,
 				612F4814253167600003EC6D /* Genericity.swift */,
+				61234F0A2535C3E200134D0C /* UnClearType.swift */,
 				613CC0DF2480EB6D00E1AC86 /* Main.storyboard */,
 				613CC0E22480EB7000E1AC86 /* Assets.xcassets */,
 				613CC0E42480EB7000E1AC86 /* LaunchScreen.storyboard */,
@@ -331,6 +334,7 @@
 				6125F68924892290000320AC /* Property.swift in Sources */,
 				61D4CFB024D2BB8F00696327 /* ErrorHandling.swift in Sources */,
 				6125F68724892268000320AC /* ClassAndStruct.swift in Sources */,
+				61234F0B2535C3E200134D0C /* UnClearType.swift in Sources */,
 				6145C9DE24EFC3D600345EAD /* TypeConversion.swift in Sources */,
 				6125F68B248922BD000320AC /* Method.swift in Sources */,
 				617382DF250C73DB00B842DB /* Protocol.swift in Sources */,
