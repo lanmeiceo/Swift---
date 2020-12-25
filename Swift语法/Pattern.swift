@@ -82,6 +82,8 @@ class Pattern: UIViewController {
             print("The point is at (\(point.0), \(point.1)).")
         }
         // 打印“The point is at (1, 2).”
+        
+        
     }
 }
 
