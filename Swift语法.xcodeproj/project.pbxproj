@@ -40,6 +40,7 @@
 		61AFD5A32493ACCE006C9E93 /* Inherit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AFD5A22493ACCE006C9E93 /* Inherit.swift */; };
 		61D4CFB024D2BB8F00696327 /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D4CFAF24D2BB8F00696327 /* ErrorHandling.swift */; };
 		61FCE3ED259477DB0066C785 /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FCE3EC259477DB0066C785 /* Feature.swift */; };
+		61FCE4022595CE900066C785 /* Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FCE4012595CE8F0066C785 /* Pattern.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		61AFD5A22493ACCE006C9E93 /* Inherit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inherit.swift; sourceTree = "<group>"; };
 		61D4CFAF24D2BB8F00696327 /* ErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
 		61FCE3EC259477DB0066C785 /* Feature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
+		61FCE4012595CE8F0066C785 /* Pattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pattern.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +179,7 @@
 				6155C34C2556A112008D7944 /* AdvancedOperator.swift */,
 				611087AA2583680D00C7E41A /* Expression.swift */,
 				61FCE3EC259477DB0066C785 /* Feature.swift */,
+				61FCE4012595CE8F0066C785 /* Pattern.swift */,
 				613CC0DF2480EB6D00E1AC86 /* Main.storyboard */,
 				613CC0E22480EB7000E1AC86 /* Assets.xcassets */,
 				613CC0E42480EB7000E1AC86 /* LaunchScreen.storyboard */,
@@ -358,6 +361,7 @@
 				6155C33E255688C3008D7944 /* AutomaticReferenceCounting.swift in Sources */,
 				61D4CFB024D2BB8F00696327 /* ErrorHandling.swift in Sources */,
 				6125F68724892268000320AC /* ClassAndStruct.swift in Sources */,
+				61FCE4022595CE900066C785 /* Pattern.swift in Sources */,
 				61234F0B2535C3E200134D0C /* UnClearType.swift in Sources */,
 				6145C9DE24EFC3D600345EAD /* TypeConversion.swift in Sources */,
 				6125F68B248922BD000320AC /* Method.swift in Sources */,
