@@ -12,6 +12,9 @@
  闭包是自包含的函数代码块，可以在代码中被传递和使用。Swift 中的闭包与 C 和 Objective-C 中的代码块（blocks）以及其他一些编程语言中的匿名函数（Lambdas）比较相似。
  
  闭包可以捕获和存储其所在上下文中任意常量和变量的引用。被称为包裹常量和变量。 Swift 会为你管理在捕获过程中涉及到的所有内存操作。
+ 
+ 其他参考资料：https://zhuanlan.zhihu.com/p/92464947
+ https://www.cnswift.org/closures
  */
 import UIKit
 
