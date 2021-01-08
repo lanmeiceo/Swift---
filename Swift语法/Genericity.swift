@@ -298,6 +298,7 @@ func findIndex<T: Equatable> (of valueToFind: T, in array:[T]) -> Int? {
 
 
 /**关联类型实践*/
+// 也可参考：https://www.jianshu.com/p/ac5185c89af1
 // 下面例子定义了一个 Container 协议，该协议定义了一个关联类型 Item：
 protocol Container {
     associatedtype Item
