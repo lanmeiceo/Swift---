@@ -18,21 +18,22 @@ class Expression: UIViewController {
         // x 为 10，20 被忽略
         
         // Key-path 表达式
-        // Key-path 表达式引用一个类型的属性或下标。在动态语言中使场景可以使用 Key-path 表达式，例如观察键值对。格式为： \类型名.路径
+        // Key-path 表达式引用一个类型的属性或下标。在动态语言中使场景可以使用 Key-path 表达式，例如观察键值对。格式为： \类型名.路径⚠️
         let s = SomeStructure(someValue: 12)
         let pathToProperty = \SomeStructure.someValue
 
+        //⚠️⚠️
         let value = s[keyPath: pathToProperty]
         // 值为 12
 
-        //在一些可以通过类型推断来确定所访问的具体类型的上下文中，可以省略 key-path 前的类型名字。下面的代码使用 \.someProperty 代替了 SomeClass.someProperty ：
+        //在一些可以通过类型推断来确定所访问的具体类型的上下文中，可以省略 key-path 前的类型名字。下面的代码使用 \.someProperty 代替了 SomeClass.someProperty ：⚠️
 
         let c = SomeClass2(someProperty: 10)
         c.observe(\.someProperty) { object, change in
             // ...
         }
         
-        //使用 self 作为路径可以创建一个恒等 key path (\.self)。恒等 key path 可以作为整个实例的引用，因此你仅需一步操作便可以利用它来访问以及修改其存储的所有数据。例如：
+        //⚠️使用 self 作为路径可以创建一个恒等 key path (\.self)。恒等 key path 可以作为整个实例的引用，因此你仅需一步操作便可以利用它来访问以及修改其存储的所有数据。例如：
         var compoundValue = (a: 1, b: 2)
         // 等价于 compoundValue = (a: 10, b: 20)
         compoundValue[keyPath: \.self] = (a: 10, b: 20)
@@ -46,14 +47,16 @@ class Expression: UIViewController {
         let nestedValue = nested[keyPath: nestedKeyPath]
         // nestedValue 的值为 24
         
-        //路径中也可以包含使用中括号的下标访问，只要下标访问的参数类型满足 Hashable 协议即可。下面的例子在 key path 中使用了下标来访问数组的第二个元素。
+        //⚠️路径中也可以包含使用中括号的下标访问，只要下标访问的参数类型满足 Hashable 协议即可。下面的例子在 key path 中使用了下标来访问数组的第二个元素。
         let greetings = ["hello", "hola", "bonjour", "안녕"]
+        /// ⚠️
         let myGreeting = greetings[keyPath: \[String].[1]]
         // myGreeting 的值为 'hola'
         
         // 下标访问中使用的值可以是一个变量或者字面量，并且 key-path 表达式会使用值语义来捕获此值。下面的代码在 key-path 表达式和闭包中都使用了 index 变量来访问 greetings 数组的第三个元素。当 index 被修改时，key-path 表达式仍旧引用数组第三个元素，而闭包则使用了新的索引值。
         var index = 2
         let path = \[String].[index]
+        //❓
         let fn: ([String]) -> String = { strings in strings[index] }
 
         print(greetings[keyPath: path])
@@ -85,6 +88,7 @@ class Expression: UIViewController {
         let interestingNumbers = ["prime": [2, 3, 5, 7, 11, 13, 17],
                                   "triangular": [1, 3, 6, 10, 15, 21, 28],
                                   "hexagonal": [1, 6, 15, 28, 45, 66, 91]]
+        //⚠️
         print(interestingNumbers[keyPath: \[String: [Int]].["prime"]] as Any)
         // 打印 "Optional([2, 3, 5, 7, 11, 13, 17])"
         print(interestingNumbers[keyPath: \[String: [Int]].["prime"]![0]])
@@ -100,11 +104,11 @@ class Expression: UIViewController {
             Task(description: "Buy a pirate costume.", completed: true),
             Task(description: "Visit Boston in the Fall.", completed: false),
         ]
-        // 下面两种写法是等价的。
+        // 下面两种写法是等价的。❓
         let descriptions = toDoList.filter(\.completed).map(\.description)
         let descriptions2 = toDoList.filter { $0.completed }.map { $0.description }
         
-      //  任何 key path 表达式的副作用发生的关键在于表达式在哪里被执行。例如，如果你在 key path 表达式中的一个下标里使用函数调用，该函数只会在表达式计算的时候调用一次，而不是每次这个 key path 被使用的时候。
+      //  任何 key path 表达式的副作用发生的关键在于表达式在哪里被执行。例如，如果你在 key path 表达式中的一个下标里使用函数调用，该函数只会在表达式计算的时候调用一次，而不是每次这个 key path 被使用的时候。⚠️⚠️
         func makeIndex() -> Int {
             print("Made an index")
             return 0
@@ -118,7 +122,7 @@ class Expression: UIViewController {
 
         
         /**选择器表达式*/
-        /**选择器表达式可以让你通过选择器来引用在 Objective-C 中方法（method）和属性（property）的 setter 和 getter 方法。
+        /**选择器表达式可以让你通过选择器来引用在 Objective-C 中方法（method）和属性（property）的 setter 和 getter 方法。⚠️
          #selector(方法名)
          #selector(getter: 属性名) #selector(setter: 属性名)         */
         
@@ -148,21 +152,22 @@ class Expression: UIViewController {
         // 如果函数声明中指定了参数的名字，那么在调用的时候也必须得写出来。这种函数调用表达式具有以下形式：
         // 函数名(参数名 1: 参数 1, 参数名 2: 参数 2)
         
-        // 如果函数的最后一个参数是函数类型，可以在函数调用表达式的尾部（右圆括号之后）加上一个闭包，该闭包会作为函数的最后一个参数。如下两种写法是等价的：
+        // 如果函数的最后一个参数是函数类型，可以在函数调用表达式的尾部（右圆括号之后）加上一个闭包，该闭包会作为函数的最后一个参数。如下两种写法是等价的：⚠️⚠️
         // someFunction 接受整型和闭包的实参
 //        someFunction(x, f: {$0 == 13})
 //        someFunction(x) {$0 == 13}
         
-        // anotherFunction 接受一个整型和两个闭包的实参
+        // anotherFunction 接受一个整型和两个闭包的实参⚠️⚠️
 //        anotherFunction(x: x, f: { $0 == 13 }, g: { print(99) })
 //        anotherFunction(x: x) { $0 == 13 } g: { print(99) }
 
-       // 如果闭包是该函数的唯一参数，那么圆括号可以省略。
+       // 如果闭包是该函数的唯一参数，那么圆括号可以省略。⚠️⚠️
 //        myData.someMethod() {$0 == 13}
 //        myData.someMethod {$0 == 13}
 
         // 和函数类似，构造器表达式可以作为一个值。 例如：
         // 类型注解是必须的，因为 String 类型有多种构造器
+        // ❓
         let initializer: (Int) -> String = String.init
         let oneTwoThree = [1, 2, 3].map(initializer).reduce("", +)
         print(oneTwoThree)
@@ -173,7 +178,19 @@ class Expression: UIViewController {
 
         /**显式成员表达式*/
         
-        // 为了区分只有参数名有所不同的方法或构造器，在圆括号中写出参数名，参数名后紧跟一个冒号，对于没有参数名的参数，使用下划线代替参数名。而对于重载方法，则需使用类型注解进行区分。例如：
+        
+        /**
+         显式成员表达式：在访问某个类型的属性、函数、类型时，需要显示地指明所属的类型。例如：
+         let str1 = String.init("hello")  // 这里使用的是 String 类型的初始化函数
+         let str2 = "world".uppercased()  // 这里使用的是 String 类型的 uppercased() 方法
+
+         隐式成员表达式：在访问某个类型的属性、函数、类型时，可以省略掉类型名，让 Swift 根据上下文自动推断类型。例如：
+         var numbers = [1, 2, 3]
+         let min = numbers.min()  // 这里使用的是 Sequence 类型的 min() 方法
+         在上面的例子中，使用了 numbers.min() 这个隐式成员表达式。虽然 numbers 的类型是 Array<Int>，但是我们并没有显式地指定它的类型，而是让 Swift 自动推断出 numbers.min() 所属类型为 Sequence 类型，并调用其 min() 方法。
+         */
+        
+        // 为了区分只有参数名有所不同的方法或构造器，在圆括号中写出参数名，参数名后紧跟一个冒号，对于没有参数名的参数，使用下划线代替参数名。而对于重载方法，则需使用类型注解进行区分。例如：⚠️
 
 //        let instance = SomeClass5()
 //
@@ -185,7 +202,7 @@ class Expression: UIViewController {
 //        let d: (Int, Bool) -> Void  = instance.overloadedMethod(_:y:)  // 无歧义
         
         
-       // 如果点号（.）出现在行首，它会被视为显式成员表达式的一部分，而不是隐式成员表达式的一部分。例如如下代码所展示的被分为多行的链式方法调用：
+       // 如果点号（.）出现在行首，它会被视为显式成员表达式的一部分，而不是隐式成员表达式的一部分。例如如下代码所展示的被分为多行的链式方法调用：⚠️
 //        let x = [10, 3, 20, 15, 4]
 //            .sort()
 //            .filter { $0 > 5 }
@@ -193,7 +210,7 @@ class Expression: UIViewController {
 
         /**
          后缀 self 表达式
-         后缀 self 表达式由某个表达式或类型名紧跟 .self 组成，其形式如下：
+         后缀 self 表达式由某个表达式或类型名紧跟 .self 组成，其形式如下：⚠️
          表达式.self
          类型.self
          第一种形式返回表达式的值。例如：x.self 返回 x。
@@ -207,6 +224,7 @@ struct SomeStructure {
 }
 
 class SomeClass2: NSObject {
+    //如果一个 Swift 类需要实现 KVC 和 KVO，可以在属性声明前加上 @objc dynamic，这样可以让 Objective-C 通过 valueForKey: 和 addObserver:forKeyPath: 等方法访问这些属性。请注意，只有在需要兼容 Objective-C 项目时，才需要使用 @objc dynamic。⚠️
     @objc dynamic var someProperty: Int
     init(someProperty: Int) {
         self.someProperty = someProperty
@@ -230,6 +248,7 @@ struct Task {
 /**选择器表达式*/
 class SomeClass3: NSObject {
     let property: String
+    //⚠️
     @objc(doSomethingWithInt:)
     func doSomething(_ x: Int) { }
 

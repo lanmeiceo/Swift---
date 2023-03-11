@@ -57,7 +57,7 @@ class ClassAndStruct: UIViewController {
         /**
          所有结构体都有一个自动生成的成员逐一构造器，用于初始化新结构体实例中成员的属性。新实例中各个属性的初始值可以通过属性的名称传递到成员逐一构造器之中
          
-         与结构体不同，类实例没有默认的成员逐一构造器
+         与结构体不同，类实例没有默认的成员逐一构造器⚠️
          */
         let vga = Resolution(width: 640, height: 480)
         
@@ -80,12 +80,12 @@ class ClassAndStruct: UIViewController {
         print("hd is still \(hd.width) pixels wide")// 打印 "hd is still 1920 pixels wide"
         
         /**
-         将 hd 赋值给 cinema 时，hd 中所存储的值会拷贝到新的 cinema 实例中。结果就是两个完全独立的实例包含了相同的数值。由于两者相互独立，因此将 cinema 的 width 修改为 2048 并不会影响 hd 中的 width 的值
+         将 hd 赋值给 cinema 时，hd 中所存储的值会拷贝到新的 cinema 实例中。结果就是两个完全独立的实例包含了相同的数值。由于两者相互独立，因此将 cinema 的 width 修改为 2048 并不会影响 hd 中的 width 的值⚠️
          */
         
         
         //枚举也遵循相同的行为准则
-        //swift 中struct,enum 均可以包含类方法和实例方法,swift官方是不建议在struct,enum 的普通方法里修改属性变量,但是在func 前面添加 mutating 关键字之后就可以方法内修改
+        //swift 中struct,enum 均可以包含类方法和实例方法,swift官方是不建议在struct,enum 的普通方法里修改属性变量,但是在func 前面添加 mutating 关键字之后就可以方法内修改⚠️
         enum CompassPoint {
             case north, south, east, west
             mutating func turnNorth() {
@@ -106,7 +106,7 @@ class ClassAndStruct: UIViewController {
         
         
         /**
-         类是引用类型
+         类是引用类型⚠️
          */
         //与值类型不同，引用类型在被赋予到一个变量、常量或者被传递到一个函数时，其值不会被拷贝。因此，使用的是已存在实例的引用，而不是其拷贝。
         let tenEighty = VideoMode()
@@ -134,7 +134,7 @@ class ClassAndStruct: UIViewController {
          因为类是引用类型，所以多个常量和变量可能在幕后同时引用同一个类实例。（对于结构体和枚举来说，这并不成立。因为它们作为值类型，在被赋予到常量、变量或者传递到函数时，其值总是会被拷贝。）
          */
         /**
-         判定两个常量或者变量是否引用同一个类实例有时很有用。为了达到这个目的，Swift 提供了两个恒等运算符：
+         判定两个常量或者变量是否引用同一个类实例有时很有用。为了达到这个目的，Swift 提供了两个恒等运算符：⚠️
          相同（===）
          不相同（!==）
          */

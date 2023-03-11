@@ -28,7 +28,7 @@ class ControlFlow: UIViewController {
         // ants have 6 legs
         // spiders have 8 legs
         
-        //如果你不需要区间序列内每一项的值，你可以使用下划线（_）替代变量名来忽略这个值：
+        //如果你不需要区间序列内每一项的值，你可以使用下划线（_）替代变量名来忽略这个值：⚠️
         let base = 3
         let power = 10
         var answer = 1
@@ -45,6 +45,7 @@ class ControlFlow: UIViewController {
         }
         //一些用户可能在其 UI 中可能需要较少的刻度。他们可以每 5 分钟作为一个刻度。使用 stride(from:to:by:) 函数跳过不需要的标记。
         let minuteInterval = 5
+        //其中from to，最后一个值将会小(大)于to的值
         for tickMark in stride(from: 0, to: minutes, by: minuteInterval) {
             // 每5分钟渲染一个刻度线（0, 5, 10, 15 ... 45, 50, 55）
             print(tickMark)
@@ -52,6 +53,8 @@ class ControlFlow: UIViewController {
         //可以在闭区间使用 stride(from:through:by:) 起到同样作用：
         let hours = 12
         let hourInterval = 3
+        //而from through，最后一个值将会小(大)于等于through的值
+
         for tickMark in stride(from: 3, through: hours, by: hourInterval) {
             // 每3小时渲染一个刻度线（3, 6, 9, 12）
         }
@@ -70,6 +73,9 @@ class ControlFlow: UIViewController {
         // 输出“The letter A”
         //case 分支的模式也可以是一个值的区间
         //可以使用元组在同一个 switch 语句中测试多个值
+        
+        //switch的tuple, 匹配所有可能的值https://gist.github.com/greatjam/e6792b293d4bd225cba5aa048b5f70b4
+
         let somePoint = (1, 1)
         switch somePoint {
         case (0, 0):
@@ -87,6 +93,7 @@ class ControlFlow: UIViewController {
         
         let anotherPoint = (2, 0)
         switch anotherPoint {
+            //⚠️
         case (let x, 0)://将匹配一个纵坐标为 0 的点，并把这个点的横坐标赋给临时的常量 x
             print("on the x-axis with an x value of \(x)")
         case (0, let y):
@@ -96,7 +103,7 @@ class ControlFlow: UIViewController {
         }
         // 输出“on the x-axis with an x value of 2”
         
-        //case 分支的模式可以使用 where 语句来判断额外的条件
+        //case 分支的模式可以使用 where 语句来判断额外的条件⚠️
         let yetAnotherPoint = (1, -1)
         switch yetAnotherPoint {
         case let (x, y) where x == y:
@@ -129,7 +136,7 @@ class ControlFlow: UIViewController {
         switch integerToDescribe {
         case 2, 3, 5, 7, 11, 13, 17, 19:
             description += " a prime number, and also"
-        fallthrough//使用 fallthrough 关键字来“贯穿”到 default 分支中
+        fallthrough//使用 fallthrough 关键字来“贯穿”到 default 分支中(即已经执行了case 还会继续往下，这里会执行default)⚠️
         default:
             description += " an integer."
         }

@@ -36,7 +36,7 @@ class ErrorHandling: UIViewController {
 
         // 用 throwing 函数传递错误
         // 为了表示一个函数、方法或构造器可以抛出错误，在函数声明的参数之后加上 throws 关键字。一个标有 throws 关键字的函数被称作 throwing 函数。如果这个函数指明了返回值类型，throws 关键词需要写在返回箭头（->）的前面
-//        func canThrowErrors() throws -> String
+//        func canThrowErrors() throws -> String⚠️
 //
 //        func cannotThrowErrors() -> String
         
@@ -84,6 +84,7 @@ class ErrorHandling: UIViewController {
             
             func buyFavoriteSnack(person: String, vendingMachine: VendingMachine) throws {
                 let snackName = favoriteSnacks[person] ?? "Candy Bar"
+                //告诉编译器需要尝试执行这段代码，在执行时，若函数抛出了错误，那么就会把这个错误抛出到调用栈上，
                 try vendingMachine.vend(itemNamed: snackName)
             }
             // 上例中，buyFavoriteSnack(person:vendingMachine:) 函数会查找某人最喜欢的零食，并通过调用 vend(itemNamed:) 方法来尝试为他们购买。因为 vend(itemNamed:) 方法能抛出错误，所以在调用它的时候在它前面加了 try 关键字。
@@ -97,7 +98,7 @@ class ErrorHandling: UIViewController {
                 }
             }
             
-            /** 用 Do-Catch 处理错误*/
+            /** 用 Do-Catch 处理错误⚠️*/
             // 你可以使用一个 do-catch 语句运行一段闭包代码来处理错误。如果在 do 子句中的代码抛出了一个错误，这个错误会与 catch 子句做匹配，从而决定哪条子句能处理它。
             // 下面是 do-catch 语句的一般形式：
 
@@ -166,13 +167,14 @@ class ErrorHandling: UIViewController {
         
         // 将错误转换成可选值
         
-        // 可以使用 try? 通过将错误转换成一个可选值来处理错误。如果是在计算 try? 表达式时抛出错误，该表达式的结果就为 nil。例如，在下面的代码中，x 和 y 有着相同的数值和等价的含义
+        // 可以使用 try? 通过将错误转换成一个可选值来处理错误。如果是在计算 try? 表达式时抛出错误，该表达式的结果就为 nil。例如，在下面的代码中，x 和 y 有着相同的数值和等价的含义⚠️
         func someThrowingFunction() throws -> Int {
             // ..
             return 1//这是自己加的，demo中没有，不然会报错
         }
         
         let x = try? someThrowingFunction()
+        //尝试调用 someThrowingFunction() 并获取其返回值，如果没有出错则将返回值赋给 y，如果出错则将 y 赋值为 nil
         let y: Int?
         do {
            y = try someThrowingFunction()
@@ -199,7 +201,7 @@ class ErrorHandling: UIViewController {
         // 指定清理操作
         // 你可以使用 defer 语句在即将离开当前代码块时执行一系列语句。该语句让你能执行一些必要的清理工作，不管是以何种方式离开当前代码块的——无论是由于抛出错误而离开，或是由于诸如 return、break 的语句。例如，你可以用 defer 语句来确保文件描述符得以关闭，以及手动分配的内存得以释放。
         
-        //defer 语句将代码的执行延迟到当前的作用域退出之前。该语句由 defer 关键字和要被延迟执行的语句组成。延迟执行的语句不能包含任何控制转移语句，例如 break、return 语句，或是抛出一个错误。延迟执行的操作会按照它们声明的顺序从后往前执行——也就是说，第一条 defer 语句中的代码最后才执行，第二条 defer 语句中的代码倒数第二个执行，以此类推。最后一条语句会第一个执行。
+        //defer 语句将代码的执行延迟到当前的作用域退出之前。该语句由 defer 关键字和要被延迟执行的语句组成。延迟执行的语句不能包含任何控制转移语句，例如 break、return 语句，或是抛出一个错误。延迟执行的操作会按照它们声明的顺序从后往前执行——也就是说，第一条 defer 语句中的代码最后才执行，第二条 defer 语句中的代码倒数第二个执行，以此类推。最后一条语句会第一个执行。⚠️
 //        func processFile(filename: String) throws {
 //            if exits(filename) {
 //                let file = open(filename)

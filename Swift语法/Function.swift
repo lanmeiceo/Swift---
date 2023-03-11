@@ -46,7 +46,7 @@ class Function: UIViewController {
         
         /**使用函数类型*/
         //定义一个叫做 mathFunction 的变量，类型是‘一个有两个 Int 型的参数并返回一个 Int 型的值的函数’，并让这个新变量指向 addTwoInts 函数”。
-        var mathFunction: (Int, Int) -> Int = addTwoInts//// anotherMathFunction 被推断为 (Int, Int) -> Int 类型
+        var mathFunction: (Int, Int) -> Int = addTwoInts//// anotherMathFunction 被推断为 (Int, Int) -> Int 类型⚠️
         //现在，你可以用 mathFunction 来调用被赋值的函数了：
         print("Result: \(mathFunction(2, 3))")
         
@@ -125,11 +125,12 @@ func printAndCount(string: String) -> Int {
     return string.count
 }
 func printWithoutCounting(string: String) {
-    let _ = printAndCount(string: string)
+    let _ = printAndCount(string: string)//❓
+    
 }
 
 /**多重返回值函数*/
-//minMax(array:) 函数返回一个包含两个 Int 值的元组，这些值被标记为 min 和 max ，以便查询函数的返回值时可以通过名字访问它们
+//minMax(array:) 函数返回一个包含两个 Int 值的元组，这些值被标记为 min 和 max ，以便查询函数的返回值时可以通过名字访问它们⚠️
 func minMax(array: [Int]) -> (min: Int, max :Int) {
     var currentMin = array[0]
     var currentMax = array[0]
@@ -144,7 +145,7 @@ func minMax(array: [Int]) -> (min: Int, max :Int) {
 }
 
 /**可选元组返回类型*/
-//如果函数返回的元组类型有可能整个元组都“没有值”，你可以使用可选的 元组返回类型反映整个元组可以是 nil 的事实。你可以通过在元组类型的右括号后放置一个问号来定义一个可选元组，例如 (Int, Int)? 或 (String, Int, Bool)?
+//如果函数返回的元组类型有可能整个元组都“没有值”，你可以使用可选的 元组返回类型反映整个元组可以是 nil 的事实。你可以通过在元组类型的右括号后放置一个问号来定义一个可选元组，例如 (Int, Int)? 或 (String, Int, Bool)?⚠️
 func minMaxOptional(array: [Int]) -> (min: Int, max: Int)? {
     if array.isEmpty { return nil }
     var currentMin = array[0]
@@ -193,14 +194,14 @@ func someFunction(_ firstParameterName: Int, secondParameterName: Int) {
 /**默认参数值*/
 //你可以在函数体中通过给参数赋值来为任意一个参数定义默认值（Deafult Value）。当默认值被定义后，调用这个函数时可以忽略这个参数
 func someFunction(parameterWithoutDefault: Int, parameterWithDefault: Int = 12) {
-    // 如果你在调用时候不传第二个参数，parameterWithDefault 会值为 12 传入到函数体中。
+    // 如果你在调用时候不传第二个参数，parameterWithDefault 会值为 12 传入到函数体中。⚠️
 }
 //someFunction(parameterWithoutDefault: 3, parameterWithDefault: 6) // parameterWithDefault = 6
 //someFunction(parameterWithoutDefault: 4) // parameterWithDefault = 12
 
 /**可变参数*/
 //可变参数的传入值在函数体中变为此类型的一个数组。例如，一个叫做 numbers 的 Double... 型可变参数，在函数体内可以当做一个叫 numbers 的 [Double] 型的数组常量。
-//注意:一个函数最多只能拥有一个可变参数。
+//注意:一个函数最多只能拥有一个可变参数。⚠️
 func arithmeticMean(_ numbers: Double...) -> Double {
     var total: Double = 0
     for number in numbers {
@@ -210,7 +211,7 @@ func arithmeticMean(_ numbers: Double...) -> Double {
 }
 
 /**输入输出参数*/
-//函数参数默认是常量。试图在函数体中更改参数值将会导致编译错误。这意味着你不能错误地更改参数值。如果你想要一个函数可以修改参数的值，并且想要在这些修改在函数调用结束后仍然存在，那么就应该把这个参数定义为输入输出参数
+//函数参数默认是常量。试图在函数体中更改参数值将会导致编译错误。这意味着你不能错误地更改参数值。如果你想要一个函数可以修改参数的值，并且想要在这些修改在函数调用结束后仍然存在，那么就应该把这个参数定义为输入输出参数⚠️
 //定义一个输入输出参数时，在参数定义前加 inout 关键字。一个 输入输出参数有传入函数的值，这个值被函数修改，然后被传出函数，替换原来的值
 //你只能传递变量给输入输出参数。你不能传入常量或者字面量，因为这些量是不能被修改的。当传入的参数作为输入输出参数时，需要在参数名前加 & 符，表示这个值可以被函数修改
 //注意：输入输出参数不能有默认值，而且可变参数不能用 inout 标记
@@ -247,7 +248,7 @@ func printHelloWorld() {
 //print("Result: \(mathFunction(2, 3))")
 // Prints "Result: 5"
 
-/**函数类型作为参数类型*/
+/**函数类型作为参数类型*/ //⚠️
 //你可以用 (Int, Int) -> Int 这样的函数类型作为另一个函数的参数类型。这样你可以将函数的一部分实现留给函数的调用者来提供。
 //这个例子定义了 printMathResult(_:_:_:) 函数，它有三个参数：第一个参数叫 mathFunction，类型是 (Int, Int) -> Int，你可以传入任何这种类型的函数；第二个和第三个参数叫 a 和 b，它们的类型都是 Int，这两个值作为已给出的函数的输入值。
 func printMathResult(_ mathFunction: (Int, Int) -> Int, _ a: Int, _ b: Int) {
@@ -261,7 +262,7 @@ func stepForward(_ input: Int) -> Int {
 func stepBackward(_ input: Int) -> Int {
     return input - 1
 }
-//如下名为 chooseStepFunction(backward:) 的函数，它的返回类型是 (Int) -> Int 类型的函数。chooseStepFunction(backward:) 根据布尔值 backwards 来返回 stepForward(_:) 函数或 stepBackward(_:) 函数：
+//如下名为 chooseStepFunction(backward:) 的函数，它的返回类型是 (Int) -> Int 类型的函数。chooseStepFunction(backward:) 根据布尔值 backwards 来返回 stepForward(_:) 函数或 stepBackward(_:) 函数：⚠️
 func chooseStepFunction(backward: Bool) -> (Int) -> Int {
     return backward ? stepBackward : stepForward
 }
@@ -277,10 +278,31 @@ func chooseStepFunction(backward: Bool) -> (Int) -> Int {
  默认情况下，嵌套函数是对外界不可见的，但是可以被它们的外围函数（enclosing function）调用。一个外围函数也可以返回它的某一个嵌套函数，使得这个函数可以在其他域中被使用。
  */
 
+
+/**
+ 在Swift中，in-out参数是指在函数调用时可以修改传递给函数的参数的值。换句话说，这些参数的值可以在函数内部被改变，并且这些改变将保持在函数返回后。
+
+ 为了定义一个in-out参数，需要在参数名前加上inout关键字。下面是一个示例函数，其中包含一个in-out参数：
+ func swapTwoInts(_ a: inout Int, _ b: inout Int) {
+     let temp = a
+     a = b
+     b = temp
+ }
+ 这个函数有两个in-out参数，分别命名为a和b。函数的作用是交换这两个参数的值。调用这个函数的方式如下：
+ var x = 10
+ var y = 20
+ swapTwoInts(&x, &y)
+ print("x is now \(x), and y is now \(y)")
+ 在调用函数时，需要在参数名前加上&符号，以表示这是一个in-out参数。这个示例将输出x is now 20, and y is now 10，证明了函数成功地交换了这两个变量的值。
+
+ 需要注意的是，in-out参数不能用于常量或字面量，因为它们的值是不能被改变的。此外，in-out参数也不能用于可选类型（Optional），因为可选类型可能为nil，而nil是不能被传递给in-out参数的。
+ */
+
+
 // In-Out 参数的访问冲突
 
 // 一个函数会对它所有的 in-out 参数进行长期写访问。in-out 参数的写访问会在所有非 in-out 参数处理完之后开始，直到函数执行完毕为止。如果有多个 in-out 参数，则写访问开始的顺序与参数的顺序一致。
-// 长期访问的存在会造成一个结果，你不能在访问以 in-out 形式传入后的原变量，即使作用域原则和访问权限允许——任何访问原变量的行为都会造成冲突。例如：
+// 长期访问的存在会造成一个结果，你不能在访问以 in-out 形式传入后的原变量，即使作用域原则和访问权限允许——任何访问原变量的行为都会造成冲突。例如：⚠️
 
 //var stepSize = 1
 //
@@ -293,7 +315,7 @@ func chooseStepFunction(backward: Bool) -> (Int) -> Int {
 
 //在上面的代码里，stepSize 是一个全局变量，并且它可以在 increment(_:) 里正常访问。然而，对于 stepSize 的读访问与 number 的写访问重叠了。就像下面展示的那样，number 和 stepSize 都指向了同一个存储地址。同一块内存的读和写访问重叠了，就此产生了冲突。
 
-//解决这个冲突的一种方式，是显示拷贝一份 stepSize ：
+//解决这个冲突的一种方式，是显示拷贝一份 stepSize ：⚠️
 
 // 显式拷贝
 //var copyOfStepSize = stepSize
@@ -305,7 +327,7 @@ func chooseStepFunction(backward: Bool) -> (Int) -> Int {
 
 // 当你在调用 increment(_:) 之前做一份拷贝，显然 copyOfStepSize 就会根据当前的 stepSize 增加。读访问在写操作之前就已经结束了，所以不会有冲突。
 
-// 长期写访问的存在还会造成另一种结果，往同一个函数的多个 in-out 参数里传入同一个变量也会产生冲突，例如：
+// 长期写访问的存在还会造成另一种结果，往同一个函数的多个 in-out 参数里传入同一个变量也会产生冲突，例如：⚠️
 func balance(_ x: inout Int, _ y: inout Int) {
     let sum = x + y
     x = sum / 2

@@ -14,7 +14,7 @@ class Index: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        /**下标语法*/
+        /**下标语法⚠️（可以理解为原来是不支持array[1]这样的 加上subscript之后自定义为自己的）*/
         /**
          下标允许你通过在实例名称后面的方括号中传入一个或者多个索引值来对实例进行查询。它的语法类似于实例方法语法和计算型属性语法。定义下标使用 subscript 关键字，与定义实例方法类似，都是指定一个或多个输入参数和一个返回类型。与实例方法不同的是，下标可以设定为读写或只读。这种行为由 getter 和 setter 实现，类似计算型属性
          */
@@ -61,6 +61,7 @@ class Index: UIViewController {
                 return row >= 0 && row < rows && column >= 0 && column < columns
             }
             //Matrix 下标的 getter 和 setter 中都含有断言，用来检查下标入参 row 和 column 的值是否有效。为了方便进行断言，Matrix 包含了一个名为 indexIsValid(row:column:) 的便利方法，用来检查入参 row 和 column 的值是否在矩阵范围内：
+            //⚠️
             subscript(row: Int, column: Int) -> Double {
                 get {
                     assert(indexIsValid(row: row, column: column), "Index out of range")

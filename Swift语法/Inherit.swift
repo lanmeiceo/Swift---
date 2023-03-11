@@ -102,7 +102,7 @@ class Inherit: UIViewController {
         // 打印“AutomaticCar: traveling at 35.0 miles per hour in gear 4”
         
         /**
-         防止重写
+         防止重写⚠️
          */
         /**
          你可以通过把方法，属性或下标标记为 final 来防止它们被重写，只需要在声明关键字前加上 final 修饰符即可（例如：final var、final func、final class func 以及 final subscript）。

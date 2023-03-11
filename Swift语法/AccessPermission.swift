@@ -51,7 +51,7 @@ class AccessPermission: UIViewController {
         
         //编译器不会提示age属性 如果强行写p.age
         //会报错'age' is inaccessible due to 'private' protection level
-        //print(p.age)
+//        print(p.age)
         
         
         /**2、private 和 fileprivate 修饰方法时*/

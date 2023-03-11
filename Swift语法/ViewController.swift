@@ -320,7 +320,7 @@ class ViewController: UIViewController {
         //使用 contains(_:) 方法去检查集合中是否包含一个特定的值
         //通过调用集合的 remove(_:) 方法去删除一个元素，如果它是该集合的一个元素则删除它并且返回它的值，若该集合不包含它，则返回 nil。另外，集合可以通过 removeAll() 方法删除所有元素。
         if let removedGenre = favoriteGenres.remove("Rock") {
-            print("\(removedGenre)? I'm over it.")//removedGenre返回的是Rock
+            print("\(removedGenre)? I'm over it.")//removedGenre返回的是Rock⚠️
             print(favoriteGenres)//["Classical", "Hip hop"]
         } else {
             print("I never much cared for that.")
@@ -339,7 +339,7 @@ class ViewController: UIViewController {
          使用 intersection(_:) 方法根据两个集合的交集创建一个新的集合。
          使用 symmetricDifference(_:) 方法根据两个集合不相交的值创建一个新的集合。
          使用 union(_:) 方法根据两个集合的所有值创建一个新的集合。
-         使用 subtracting(_:) 方法根据不在另一个集合中的值创建一个新的集合
+         使用 subtracting(_:) 方法根据不在另一个集合中的值创建一个新的集合(减法)
          */
         let oddDigits: Set = [1, 3, 5, 7, 9]
         let evenDigits: Set = [0, 2, 4, 6, 8]
@@ -442,7 +442,7 @@ class ViewController: UIViewController {
         //使用初始化语法来创建一个空数组或者空字典
         let emptyArray = [String]()
         let emptyDic = [String: Float]()
-        print(emptyArray,emptyDic)
+        print(emptyArray,emptyDic)//[] [:]
         
         /**
          可选类型
@@ -486,6 +486,7 @@ class ViewController: UIViewController {
         //("blue", false) < ("purple", true) // 错误，因为 < 不能比较布尔类型
         
         /**空合运算符*/
+        //关于??可以看看https://www.jianshu.com/p/fbbbfa923b19
         //空合运算符（a ?? b）将对可选类型 a 进行空判断，如果 a 包含一个值就进行解包，否则就返回一个默认值 b。表达式 a 必须是 Optional 类型。默认值 b 的类型必须要和 a 存储值的类型保持一致。
        //空合运算符是对以下代码的简短表达方法
        // a != nil ? a! : b//当可选类型 a 的值不为空时，进行强制解封（a!），访问 a 中的值；反之返回默认值 b。无疑空合运算符（??）提供了一种更为优雅的方式去封装条件判断和解封两种行为，显得简洁以及更具可读性。
@@ -498,6 +499,8 @@ class ViewController: UIViewController {
         /**
          可选绑定
          */
+        // if let语法https://zhuanlan.zhihu.com/p/398144919
+        //  if let 连用,判断对象的值是否为'nil',if var的用法, 和if let的区别就是可以在{ }内修改变量的值
 
         if let actualNumber = Int(possibleNumber) {
             print("\'\(possibleNumber)\' has an integer value of \(actualNumber)")
@@ -550,11 +553,12 @@ class ViewController: UIViewController {
         /**强制执行先决条件*/
         //当一个条件可能为假，但是继续执行代码要求条件必须为真的时候，需要使用先决条件。例如使用先决条件来检查是否下标越界，或者来检查是否将一个正确的参数传给函数
         //你可以使用全局 precondition(_:_:file:line:) 函数来写一个先决条件。向这个函数传入一个结果为 true 或者 false 的表达式以及一条信息，当表达式的结果为 false 的时候这条信息会被显示
-        //// 在一个下标的实现里...
+         //// 在一个下标的实现里...
         let index2 = 1
         precondition(index2 > 0, "Index must be greater than zero.")
         //你可以调用 preconditionFailure(_:file:line:) 方法来表明出现了一个错误，例如，switch 进入了 default 分支，但是所有的有效值应该被任意一个其他分支（非 default 分支）处理。
         
+        //断言Assert仅在调试环境运行，先决条件precondition则在调试环境和生产环境中运行。
         
         
         /**
@@ -600,7 +604,7 @@ class ViewController: UIViewController {
             print("Add some raisins and make ants on a log.")
         case "cucumber", "watercress":
             print("That would make a good tea sandwich.")
-        case let x where x.hasSuffix("pepper"):
+        case let x where x.hasSuffix("pepper"):///❓
             print("Is it a spicy \(x)?")
         default:
             print("Everything tastes good in soup.")

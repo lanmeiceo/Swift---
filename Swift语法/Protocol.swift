@@ -89,10 +89,12 @@ class Protocol: UIViewController {
         // 打印 "These two vectors are also equivalent."
         
         // 下面的例子中定义了 SkillLevel 枚举类型，其中定义了初学者（beginner）、中级（intermediate）和专家（expert）三种等级，专家等级会由额外的星级（stars）来进行排名。
+        //Comparable是一个协议，它要求类型能够进行比较并返回一种布尔值来表示它们之间的关系。如果一个类型遵循了Comparable协议，那么它就可以被排序或者在其他需要比较的场合中被使用。
         enum SkillLevel: Comparable {
             case beginner
             case intermediate
-            case expert(stars: Int)//???
+            //这里的 expert(stars: Int) 是一个关联值，它表示一个包含不同等级技能的枚举值 SkillLevel.expert
+            case expert(stars: Int)
         }
         
         var levels = [SkillLevel.beginner,SkillLevel.beginner,SkillLevel.expert(stars: 5),SkillLevel.expert(stars: 3)]
@@ -387,6 +389,7 @@ class SnakesAndLadders: DiceGame {
     }
 }
 
+    //⚠️
 class DiceGameTracker: DiceGameDelegate {
     var numberOfTurns = 0
     func gameDidStart(_ game: DiceGame) {
@@ -429,7 +432,7 @@ extension SnakesAndLadders: TextRepresentable {
 }
 
 
-/**有条件地遵循协议*/
+/**有条件地遵循协议⚠️*/
 // 泛型类型可能只在某些情况下满足一个协议的要求，比如当类型的泛型形式参数遵循对应协议时。你可以通过在扩展类型时列出限制让泛型类型有条件地遵循某协议。在你采纳协议的名字后面写泛型 where 分句。
 // 下面的扩展让 Array 类型只要在存储遵循 TextRepresentable 协议的元素时就遵循 TextRepresentable 协议。
 
@@ -464,6 +467,8 @@ extension Hamster: TextRepresentable {}
 // 在包含类型原始声明的文件中声明对 Equatable 协议的遵循，可以得到 == 操作符的合成实现，且无需自己编写任何关于 == 的实现代码。Equatable 协议同时包含 != 操作符的默认实现。
 
 // 下面的例子中定义了一个 Vector3D 结构体来表示一个类似 Vector2D 的三维向量 (x, y, z)。由于 x、y 和 z 都是满足 Equatable 的类型，Vector3D 可以得到连等判断的合成实现。
+//Equatable 是一个协议（protocol），用于定义两个对象是否可以相等。遵循 Equatable 协议的类型需要实现 == 运算符，并返回一个布尔值，表示两个对象是否相等。如果两个对象相等，则应该返回 true，否则返回 false。
+
 struct Vector3D: Equatable {
     var x = 0.0, y = 0.0, z = 0.0
 }
@@ -532,6 +537,7 @@ struct Person2: Named, Aged {
     var name: String
     var age: Int
 }
+//⚠️
 func wishHappyBirthday(to celebrator: Named & Aged) {
     print("Happy birthday, \(celebrator.name), you're \(celebrator.age)!")
 }

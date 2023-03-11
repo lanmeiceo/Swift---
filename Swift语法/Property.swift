@@ -6,7 +6,7 @@
 //  Copyright © 2020 caowei. All rights reserved.
 //
 /**
- 属性
+ 属性⚠️
  */
 import UIKit
 
@@ -30,7 +30,7 @@ class Property: UIViewController {
         /**FixedLengthRange 的实例包含一个名为 firstValue 的变量存储属性和一个名为 length 的常量存储属性。在上面的例子中，length 在创建实例的时候被初始化，且之后无法修改它的值，因为它是一个常量存储属性。*/
         
         /**常量结构体实例的存储属性*/
-        //如果创建了一个结构体实例并将其赋值给一个常量，则无法修改该实例的任何属性，即使被声明为可变属性也不行:
+        //如果创建了一个结构体实例并将其赋值给一个常量，则无法修改该实例的任何属性，即使被声明为可变属性也不行:⚠️
         let rangeOfFourItems = FixedLengthRange(firstValue: 0, length: 4)// 该区间表示整数 0，1，2，3
 //        rangeOfFourItems.firstValue = 6 //尽管 firstValue 是个可变属性，但这里还是会报错，因为rangeOfFourItems是常量
         
@@ -109,7 +109,7 @@ class Property: UIViewController {
         
         /**只读计算属性*/
         //只有 getter 没有 setter 的计算属性叫只读计算属性。只读计算属性总是返回一个值，可以通过点运算符访问，但不能设置新的值
-        //注意：必须使用 var 关键字定义计算属性，包括只读计算属性，因为它们的值不是固定的。let 关键字只用来声明常量属性，表示初始化后再也无法修改的值。
+        //注意：必须使用 var 关键字定义计算属性，包括只读计算属性，因为它们的值不是固定的。let 关键字只用来声明常量属性，表示初始化后再也无法修改的值。⚠️
         struct Cuboid {
             var width = 0.0, height = 0.0, depth = 0.0
             var volume: Double {
@@ -132,7 +132,7 @@ class Property: UIViewController {
          同样，didSet 观察器会将旧的属性值作为参数传入，可以为该参数指定一个名称或者使用默认参数名 oldValue。如果在 didSet 方法中再次对该属性赋值，那么新值会覆盖旧的值。
          */
         /**
-         注意：在父类初始化方法调用之后，在子类构造器中给父类的属性赋值时，会调用父类属性的 willSet 和 didSet 观察器。而在父类初始化方法调用之前，给子类的属性赋值时不会调用子类属性的观察器
+         注意：在父类初始化方法调用之后，在子类构造器中给父类的属性赋值时，会调用父类属性的 willSet 和 didSet 观察器。而在父类初始化方法调用之前，给子类的属性赋值时不会调用子类属性的观察器⚠️
          */
         struct StepCounter {
             var totalSteps: Int = 0 {
@@ -168,6 +168,7 @@ class Property: UIViewController {
         /**
          属性包装器在管理属性如何存储和定义属性的代码之间添加了一个分隔层。举例来说，如果你的属性需要线程安全性检查或者需要在数据库中存储它们的基本数据，那么必须给每个属性添加同样的逻辑代码。当使用属性包装器时，你只需在定义属性包装器时编写一次管理代码，然后应用到多个属性上来进行复用
          */
+        //⚠️
         @propertyWrapper
         struct TwelveOrLess {
             private var number: Int//以 private 的方式声明 number 变量，这使得 number 仅在 TwelveOrLess 的实现中使用。
@@ -179,6 +180,7 @@ class Property: UIViewController {
         }
         //通过在属性之前写上包装器名称作为特性的方式，你可以把一个包装器应用到一个属性上去。这里有个存储小矩形的结构体。通过 TwelveOrLess 属性包装器实现类似（挺随意的）对“小”的定义
         struct SmallRectangle {
+            //⚠️
             @TwelveOrLess var height: Int
             @TwelveOrLess var width: Int
         }
@@ -187,7 +189,7 @@ class Property: UIViewController {
         rectangle.height = 10
         print(rectangle.height)// 打印 "10"
         rectangle.height = 24
-        print(rectangle.height)// 打印 "12"
+        print(rectangle.height)// 打印 "12" 因为上面限制了最大12
         
         /**
          当你把一个包装器应用到一个属性上时，编译器将合成提供包装器存储空间和通过包装器访问属性的代码。（属性包装器只负责存储被包装值，所以没有合成这些代码。）不利用这个特性语法的情况下，你可以写出使用属性包装器行为的代码。举例来说，这是先前代码清单中的 SmallRectangle 的另一个版本。这个版本将其属性明确地包装在 TwelveOrLess 结构体中，而不是把 @TwelveOrLess 作为特性写下来：
@@ -258,6 +260,7 @@ class Property: UIViewController {
         
         //当你在自定义特性后面把实参写在括号里时，Swift 使用接受这些实参的构造器来设置包装器。举例来说，如果你提供初始值和最大值，Swift 使用 init(wrappedValue:maximum:) 构造器
         struct NarrowRectangle {
+            // ⚠️
             @SmallNumber(wrappedValue: 2, maximum: 5) var height: Int
             @SmallNumber(wrappedValue: 3, maximum: 4) var width: Int
         }
@@ -276,7 +279,7 @@ class Property: UIViewController {
         print(mixedRectangle.height) // 打印 "12"
         //调用 SmallNumber(wrappedValue: 1) 来创建包装 height 的 SmallNumber 的一个实例，这个实例使用默认最大值 12。调用 SmallNumber(wrappedValue: 2, maximum: 9) 来创建包装 width 的 SmallNumber 的一个实例
         
-        /**从属性包装器中呈现一个值*/
+        /**从属性包装器中呈现一个值*///❓就是未被包装器改变后 本身的值的判断返回？
         /**
          除了被包装值，属性包装器可以通过定义被呈现值暴露出其他功能。举个例子，管理对数据库的访问的属性包装器可以在它的被呈现值上暴露出 flushDatabaseConnection() 方法。除了以货币符号（$）开头，被呈现值的名称和被包装值是一样的。因为你的代码不能够定义以 $ 开头的属性，所以被呈现值永远不会与你定义的属性有冲突。
          在之前 SmallNumber 的例子中，如果你尝试把这个属性设置为一个很大的数值，属性包装器会在存储这个数值之前调整这个数值。以下的代码把被呈现值添加到 SmallNumber 结构体中来追踪在存储新值之前属性包装器是否为这个属性调整了新值。
@@ -320,7 +323,7 @@ class Property: UIViewController {
         struct SizedRectangle {
             @SmallNumber2 var height: Int
             @SmallNumber2 var width: Int
-
+                //mutating func 是一种可以修改结构体或枚举类型的 属性值的函数
             mutating func resize(to size: Size2) -> Bool {
                 switch size {
                 case .small:
@@ -354,7 +357,10 @@ class Property: UIViewController {
          存储型类型属性是延迟初始化的，它们只有在第一次被访问的时候才会被初始化。即使它们被多个线程同时访问，系统也保证只会对其进行一次初始化，并且不需要对其使用 lazy 修饰符
          */
         
-        /**类型属性语法*/
+        /**类型属性语法*/ //⚠️
+        /**
+         可以使用关键字static或class来定义类型属性，其中static关键字表示只能在定义的类型中访问这些属性，而class关键字则表示子类可以重写这些属性
+         */
         /**
          在 C 或 Objective-C 中，与某个类型关联的静态常量和静态变量，是作为 global（全局）静态变量定义的。但是在 Swift 中，类型属性是作为类型定义的一部分写在类型最外层的花括号内，因此它的作用范围也就在类型支持的范围内。
          使用关键字 static 来定义类型属性。在为类定义计算型类型属性时，可以改用关键字 class 来支持子类对父类的实现进行重写。下面的例子演示了存储型和计算型类型属性的语法：
@@ -376,6 +382,7 @@ class Property: UIViewController {
             static var computedTypeProperty: Int {
                 return 27
             }
+            //⚠️
         class var overrideableComputedTypeProperty: Int {
                 return 107
             }
@@ -435,7 +442,7 @@ class DataImporter {
 }
 
 class DataManager {
-    lazy var importer = DataImporter()
+    lazy var importer = DataImporter()//⚠️
     var data = [String]()
     // 这里会提供数据管理功能
 }

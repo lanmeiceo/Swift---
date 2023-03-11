@@ -6,7 +6,7 @@
 //  Copyright © 2020 caowei. All rights reserved.
 //
 /**
- 枚举
+ 枚举⚠️
  */
 import UIKit
 
@@ -21,7 +21,7 @@ class Enum: UIViewController {
         var directionToHead = CompassPoint.west
         //directionToHead 的类型可以在它被 CompassPoint 的某个值初始化时推断出来。一旦 directionToHead 被声明为 CompassPoint 类型，你可以使用更简短的点语法将其设置为另一个 CompassPoint 的值
         //当 directionToHead 的类型已知时，再次为其赋值可以省略枚举类型名。在使用具有显式类型的枚举值时，这种写法让代码具有更好的可读性
-        directionToHead = .east
+        directionToHead = .east//⚠️
         
         /**
          使用 Switch 语句匹配枚举值
@@ -57,7 +57,7 @@ class Enum: UIViewController {
         let numberOfChoices = Beverage.allCases.count;
         print("\(numberOfChoices) beverages available")
         
-        for beverage in Beverage.allCases {
+        for beverage in Beverage.allCases {//⚠️
             print(beverage)
         }
         // coffee
@@ -73,7 +73,7 @@ class Enum: UIViewController {
         //两种商品条形码的枚举
         enum Barcode {
             case upc(Int, Int, Int, Int)//定义一个名为 Barcode 的枚举类型，它的一个成员值是具有 (Int，Int，Int，Int) 类型关联值的 upc
-            case qrCode(String)//具有 String 类型关联值的 qrCode
+            case qrCode(String)//具有 String 类型关联值 的 qrCode
         }
         //面的例子创建了一个名为 productBarcode 的变量，并将 Barcode.upc 赋值给它，关联的元组值为 (8, 85909, 51226, 3)。
         var productBarcode = Barcode.upc(8, 85909, 51226, 3)
@@ -81,7 +81,7 @@ class Enum: UIViewController {
         productBarcode = .qrCode("ABCDEFGHIJKLMNOP")
         
         /**
-         你可以使用一个 switch 语句来检查不同的条形码类型，和之前使用 Switch 语句来匹配枚举值的例子一样。然而，这一次，关联值可以被提取出来作为 switch 语句的一部分。你可以在 switch 的 case 分支代码中提取每个关联值作为一个常量（用 let 前缀）或者作为一个变量（用 var 前缀）来使用：
+         你可以使用一个 switch 语句来检查不同的条形码类型，和之前使用 Switch 语句来匹配枚举值的例子一样。然而，这一次，关联值可以被提取出来作为 switch 语句的一部分。你可以在 switch 的 case 分支代码中提取每个关联值作为一个常量（用 let 前缀）或者作为一个变量（用 var 前缀）来使用：⚠️
          */
         switch productBarcode {
         case .upc(let numberSystem, let manufacturer, let product, let check):
@@ -91,7 +91,7 @@ class Enum: UIViewController {
         }
         // 打印“QR code: ABCDEFGHIJKLMNOP.”
         
-        //如果一个枚举成员的所有关联值都被提取为常量，或者都被提取为变量，为了简洁，你可以只在成员名称前标注一个 let 或者 var：
+        //如果一个枚举成员的所有关联值都被提取为常量，或者都被提取为变量，为了简洁，你可以只在成员名称前标注一个 let 或者 var：⚠️
         switch productBarcode {
         case let .upc(numberSystem, manufacturer, product, check):
             print("UPC: \(numberSystem), \(manufacturer), \(product), \(check).")
@@ -137,7 +137,12 @@ class Enum: UIViewController {
         let earthsOrder = Planet.earth.rawValue //3
         let sunsetDirection = CompassPoint.west.rawValue //west
         print(earthsOrder,sunsetDirection)
-     
+       /**
+        ⚠️rawValue 是一个枚举类型的属性，它允许开发人员将一个枚举成员映射到一个原始值（通常是整数或字符串），或将一个原始值映射到一个枚举成员。
+        
+        在枚举类型中定义 rawValue 属性后，可以使用枚举成员初始化 rawValue，也可以使用 rawValue 初始化枚举成员。这在需要将枚举值存储在数据库或将它们与其他系统进行交互时特别有用。
+        */
+        
         /**
          使用原始值初始化枚举实例
          */
@@ -161,7 +166,7 @@ class Enum: UIViewController {
         }// 打印“There isn't a planet at position 11”
         
         /**
-         递归枚举
+         递归枚举⚠️
          */
         /**
          递归枚举是一种枚举类型，它有一个或多个枚举成员使用该枚举类型的实例作为关联值。使用递归枚举时，编译器会插入一个间接层。你可以在枚举成员前加上 indirect 来表示该成员可递归。
@@ -188,6 +193,7 @@ class Enum: UIViewController {
         
         func evaluate(_ expression: ArithmeticExpression2) -> Int {
             switch expression {
+                ///case let 是用于匹配和绑定枚举类型关联值的语法。
             case let .number(value):
                 return value
             case let .addition(left, right):

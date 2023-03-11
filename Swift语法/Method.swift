@@ -50,11 +50,11 @@ class Method: UIViewController {
             }
         }
         
-        /**实际上，你不必在你的代码里面经常写 self。不论何时，只要在一个方法中使用一个已知的属性或者方法名称，如果你没有明确地写 self，Swift 假定你是指当前实例的属性或者方法。这种假定在上面的 Counter 中已经示范了：Counter 中的三个实例方法中都使用的是 count（而不是 self.count）*/
+        /**⚠️实际上，你不必在你的代码里面经常写 self。不论何时，只要在一个方法中使用一个已知的属性或者方法名称，如果你没有明确地写 self，Swift 假定你是指当前实例的属性或者方法。这种假定在上面的 Counter 中已经示范了：Counter 中的三个实例方法中都使用的是 count（而不是 self.count）*/
         
         /**使用这条规则的主要场景是实例方法的某个参数名称与实例的某个属性名称相同的时候。在这种情况下，参数名称享有优先权，并且在引用属性时必须使用一种更严格的方式。这时你可以使用 self 属性来区分参数名称和属性名称*/
 
-        //下面的例子中，self 消除方法参数 x 和实例属性 x 之间的歧义
+        //下面的例子中，self 消除方法参数 x 和实例属性 x 之间的歧义⚠️
         struct Point0 {
             var x = 0.0, y = 0.0
             func isToTheRightOf(x: Double) -> Bool {
@@ -69,7 +69,7 @@ class Method: UIViewController {
         
         
         /**在实例方法中修改值类型*/
-        /**结构体和枚举是值类型。默认情况下，值类型的属性不能在它的实例方法中被修改*/
+        /**⚠️结构体和枚举是值类型。默认情况下，值类型的属性不能在它的实例方法中被修改*/
         /**但是，如果你确实需要在某个特定的方法中修改结构体或者枚举的属性，你可以为这个方法选择 可变（mutating）行为，然后就可以从其方法内部改变它的属性；并且这个方法做的任何改变都会在方法执行结束时写回到原始结构中。方法还可以给它隐含的 self 属性赋予一个全新的实例，这个新实例在方法结束时会替换现存实例。  */
         //要使用 可变方法，将关键字 mutating 放到方法的 func 关键字之前就可以了
         struct Point {
@@ -89,7 +89,7 @@ class Method: UIViewController {
 //        fixedPoint.moveBy(x: 2.0, y: 3.0)
         // 这里将会报告一个错误
         
-        /**在可变方法中给 self 赋值*/
+        /**在可变方法中给 self 赋值⚠️*/
         //可变方法能够赋给隐含属性 self 一个全新的实例。上面 Point 的例子可以用下面的方式改写：
         struct Point2 {
             var x = 0.0, y = 0.0
@@ -98,7 +98,7 @@ class Method: UIViewController {
             }
         }
         
-        //枚举的可变方法可以把 self 设置为同一枚举类型中不同的成员：
+        //枚举的可变方法可以把 self 设置为同一枚举类型中不同的成员：⚠️
         enum TriStateSwitch {
             case off, low, high
             mutating func next() {
@@ -118,7 +118,7 @@ class Method: UIViewController {
         //上面的例子中定义了一个三态切换的枚举。每次调用 next() 方法时，开关在不同的电源状态（off, low, high）之间循环切换。
         
         
-        /**类型方法*/
+        /**⚠️类型方法(类方法)*/
         /**
          实例方法是被某个类型的实例调用的方法。你也可以定义在类型本身上调用的方法，这种方法就叫做类型方法。在方法的 func 关键字之前加上关键字 static，来指定类型方法。类还可以用关键字 class 来指定，从而允许子类重写父类该方法的实现。*/
         /**在 Objective-C 中，你只能为 Objective-C 的类类型（classes）定义类型方法（type-level methods）。在 Swift 中，你可以为所有的类、结构体和枚举定义类型方法。每一个类型方法都被它所支持的类型显式包含   */
@@ -146,7 +146,7 @@ class Method: UIViewController {
                 return level <= highestUnlockedLevel
             }
 
-            //因为允许在调用 advance(to:) 时候忽略返回值，不会产生编译警告，所以函数被标注为 @discardableResult 属性，
+            //因为允许在调用 advance(to:) 时候忽略返回值，不会产生编译警告，所以函数被标注为 @discardableResult 属性，⚠️
             @discardableResult
             mutating func advance(to level: Int) -> Bool {
                 if LevelTracker.isUnlocked(level) {

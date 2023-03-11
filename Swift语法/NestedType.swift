@@ -57,7 +57,6 @@ class NestedType: UIViewController {
                 
         }
         
-        
         let theAceOfSpades = BlackjackCard(rank: .ace, suit: .spades)
         print("theAceOfSpades: \(theAceOfSpades.description)")
         // 打印“theAceOfSpades: suit is ♠, value is 1 or 11”

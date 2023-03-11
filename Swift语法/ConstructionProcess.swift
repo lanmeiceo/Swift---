@@ -73,7 +73,7 @@ class ConstructionProcess: UIViewController {
         
         //结构体的逐一成员构造器
         /**
-         结构体如果没有定义任何自定义构造器，它们将自动获得一个逐一成员构造器（memberwise initializer）。不像默认构造器，即使存储型属性没有默认值，结构体也能会获得逐一成员构造器。
+         ⚠️结构体如果没有定义任何自定义构造器，它们将自动获得一个逐一成员构造器（memberwise initializer）。不像默认构造器，即使存储型属性没有默认值，结构体也能会获得逐一成员构造器。
          */
         struct Size0 {
             var width = 0.0, height = 0.0
@@ -212,7 +212,7 @@ class ConstructionProcess: UIViewController {
             var color: String
             init(color: String) {
                 self.color = color
-                // super.init() 在这里被隐式调用
+                // super.init() 在这里被隐式调用❓
             }
             override var description: String {
                 return "\(super.description) in a beautiful \(color)"
@@ -288,7 +288,7 @@ class ConstructionProcess: UIViewController {
         
         /**可失败构造器*/
         //有时候，定义一个构造器可失败的类，结构体或者枚举是很有用的。这里所指的“失败” 指的是，如给构造器传入无效的形参，或缺少某种所需的外部资源，又或是不满足某种必要的条件等
-        //为了妥善处理这种构造过程中可能会失败的情况。你可以在一个类，结构体或是枚举类型的定义中，添加一个或多个可失败构造器。其语法为在 init 关键字后面添加问号（init?）
+        //为了妥善处理这种构造过程中可能会失败的情况。你可以在一个类，结构体或是枚举类型的定义中，添加一个或多个可失败构造器。其语法为在 init 关键字后面添加问号（init?）⚠️
         /**注意：可失败构造器的参数名和参数类型，不能与其它非可失败构造器的参数名，及其参数类型相同*/
         //可失败构造器会创建一个类型为自身类型的可选类型的对象。你通过 return nil 语句来表明可失败构造器在何种情况下应该 “失败
         //注意：严格来说，构造器都不支持返回值。因为构造器本身的作用，只是为了确保对象能被正确构造。因此你只是用 return nil 表明可失败构造器构造失败，而不要用关键字 return 来表明构造成功。
@@ -296,6 +296,7 @@ class ConstructionProcess: UIViewController {
         //例如，实现针对数字类型转换的可失败构造器。确保数字类型之间的转换能保持精确的值，使用这个 init(exactly:) 构造器。如果类型转换不能保持值不变，则这个构造器构造失败。
         let wholeNumber: Double = 12345.0
         let pi = 3.14159
+        //⚠️
         if let valueMaintained = Int(exactly: wholeNumber) {
             print("\(wholeNumber) conversion to Int maintains value of \(valueMaintained)")
         }
@@ -383,7 +384,7 @@ class ConstructionProcess: UIViewController {
         }
         // 打印“Unable to initialize one unnamed product”
         
-        //重写一个可失败构造器
+        //重写一个可失败构造器⚠️
         //你可以在子类中重写父类的可失败构造器。或者你也可以用子类的非可失败构造器重写一个父类的可失败构造器。这使你可以定义一个不会构造失败的子类，即使父类的构造器允许构造失败。
         // 注意： 当你用子类的非可失败构造器重写父类的可失败构造器时，向上代理到父类的可失败构造器的唯一方式是对父类的可失败构造器的返回值进行强制解包
         // 注意：你可以用非可失败构造器重写可失败构造器，但反过来却不行
@@ -416,18 +417,18 @@ class ConstructionProcess: UIViewController {
             }
         }
         
-        //你可以在子类的不可失败构造器中使用强制解包来调用父类的可失败构造器。比如，下面的 UntitledDocument 子类的 name 属性的值总是 "[Untitled]"，它在构造过程中使用了父类的可失败构造器 init?(name:)：
+        //你可以在子类的不可失败构造器中使用强制解包来调用父类的可失败构造器。比如，下面的 UntitledDocument 子类的 name 属性的值总是 "[Untitled]"，它在构造过程中使用了父类的可失败构造器 init?(name:)：⚠️
         class UntitledDocument: Document {
             override init() {
                 super.init(name: "[Untitled]")!
             }
         }
         
-        // init! 可失败构造器
+        // init! 可失败构造器⚠️
         // 通常来说我们通过在 init 关键字后添加问号的方式（init?）来定义一个可失败构造器，但你也可以通过在 init 后面添加感叹号的方式来定义一个可失败构造器（init!），该可失败构造器将会构建一个对应类型的隐式解包可选类型的对象。
        // 你可以在 init? 中代理到 init!，反之亦然。你也可以用 init? 重写 init!，反之亦然。你还可以用 init 代理到 init!，不过，一旦 init! 构造失败，则会触发一个断言。
         
-        //必要构造器
+        //必要构造器⚠️
         // 在类的构造器前添加 required 修饰符表明所有该类的子类都必须实现该构造器：
         class SomeClass {
             required init() {
@@ -435,7 +436,7 @@ class ConstructionProcess: UIViewController {
             }
         }
         
-        //子类重写父类的必要构造器时，必须在子类的构造器前也添加 required 修饰符，表明该构造器要求也应用于继承链后面的子类。在重写父类中必要的指定构造器时，不需要添加 override 修饰符
+        //子类重写父类的必要构造器时，必须在子类的构造器前也添加 required 修饰符，表明该构造器要求也应用于继承链后面的子类。在重写父类中必要的指定构造器时，不需要添加 override 修饰符⚠️
         class SomeSubclass: SomeClass {
             required init() {
                 // 构造器的实现代码
@@ -454,12 +455,19 @@ class ConstructionProcess: UIViewController {
 //                return someValue
 //            }()
 //        }
-        // 注意闭包结尾的花括号后面接了一对空的小括号。这用来告诉 Swift 立即执行此闭包。如果你忽略了这对括号，相当于将闭包本身作为值赋值给了属性，而不是将闭包的返回值赋值给属性。
+        // 注意闭包结尾的花括号后面接了一对空的小括号。这用来告诉 Swift 立即执行此闭包。如果你忽略了这对括号，相当于将闭包本身作为值赋值给了属性，而不是将闭包的返回值赋值给属性。⚠️
         // 注意：如果你使用闭包来初始化属性，请记住在闭包执行时，实例的其它部分都还没有初始化。这意味着你不能在闭包里访问其它属性，即使这些属性有默认值。同样，你也不能使用隐式的 self 属性，或者调用任何实例方法。
        
         //boardColors 数组是通过一个闭包来初始化并设置颜色值的
         //Chessboard 结构体定义了一个属性 boardColors，它是一个包含 64 个 Bool 值的数组。在数组中，值为 true 的元素表示一个黑格，值为 false 的元素表示一个白格。数组中第一个元素代表棋盘上左上角的格子，最后一个元素代表棋盘上右下角的格子。
         struct Chessboard {
+            /**
+             { (parameters) -> return type in
+                 statements
+             }
+
+             */
+            ///这个语法 ❓ 这里省略了in
             let boardColors: [Bool] = {
                 var temporaryBoard = [Bool]()
                 var isBlack = false
@@ -470,10 +478,11 @@ class ConstructionProcess: UIViewController {
                     }
                     isBlack = !isBlack
                 }
+                ///这个闭包需要返回temporaryBoard数组，因为它是boardColors常量的初始化代码，也就是它是用来初始化boardColors数组的。如果该闭包没有返回temporaryBoard数组，则boardColors常量将被初始化为空数组，因此不能省略返回语句。
                 return temporaryBoard
             }()
             func squareIsBlackAt(row: Int, column: Int) -> Bool {
-                return boardColors[(row * 8) + column]
+                return boardColors[(row * 8) + column]//查询
             }
         }
         

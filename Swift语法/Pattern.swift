@@ -31,6 +31,7 @@ class Pattern: UIViewController {
         // 可选模式为 for-in 语句提供了一种迭代数组的简便方式，只为数组中非 nil 的元素执行循环体。
         let arrayOfOptionalInts: [Int?] = [nil, 2, 3, nil, 5]
         // 只匹配非 nil 的元素
+        //⚠️for case let 是 Swift 中的模式匹配语法，它用于从集合（如数组或集合）中选取满足特定匹配模式的元素。在这个例子中，可以将 for case let number? in arrayOfOptionalInts 看作是将数组 arrayOfOptionalInts 中的所有非 nil 的元素绑定到一个 number 常量中，并逐个遍历这些元素，依次打印它们的值。这样，最终的输出结果只包含那些不为 nil 的值。如果集合中包含的元素都是可选类型，并且您只想考虑非 nil 的元素，则可以使用此语法。
         for case let number? in arrayOfOptionalInts {
             print("Found a \(number)")
         }
@@ -71,7 +72,7 @@ class Pattern: UIViewController {
         // 打印“(1, 2) is near the origin.”
         
         
-        //你可以重载 ~= 运算符来提供自定义的表达式匹配行为。比如你可以重写上面的例子，将 point 表达式与字符串形式表示的点进行比较。
+        //⚠️你可以重载 ~= 运算符来提供自定义的表达式匹配行为。比如你可以重写上面的例子，将 point 表达式与字符串形式表示的点进行比较。
 
 
         

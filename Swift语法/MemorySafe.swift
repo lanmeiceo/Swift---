@@ -61,7 +61,7 @@ func balance2(_ x: inout Int, _ y: inout Int) {
 
 //var playerInformation = (health: 10, energy: 20)
 //balance2(&playerInformation.health, &playerInformation.energy)
-// 错误：playerInformation 的属性访问冲突
+ //错误：playerInformation 的属性访问冲突
 
 
 // 上面的例子里，传入同一元组的元素对 balance(_:_:) 进行调用，产生了冲突，因为 playerInformation 的访问产生了写访问重叠。playerInformation.health 和 playerInformation.energy 都被作为 in-out 参数传入，意味着 balance(_:_:) 需要在函数调用期间对它们发起写访问。任何情况下，对于元组元素的写访问都需要对整个元组发起写访问。这意味着对于 playerInfomation 发起的两个写访问重叠了，造成冲突。
@@ -71,7 +71,7 @@ func balance2(_ x: inout Int, _ y: inout Int) {
 //var holly = Player(name: "Holly", health: 10, energy: 10)
 //balance(&holly.health, &holly.energy)  // 错误
 
-//在实践中，大多数对于结构体属性的访问都会安全的重叠。例如，将上面例子里的变量 holly 改为本地变量而非全局变量，编译器就会可以保证这个重叠访问是安全的：
+//在实践中，大多数对于结构体属性的访问都会安全的重叠。例如，将上面例子里的变量 holly 改为本地变量而非全局变量，编译器就会可以保证这个重叠访问是安全的：⚠️
 func someFunction() {
     var oscar = Player(name: "Oscar", health: 10, energy: 10)
     balance(&oscar.health, &oscar.energy)  // 正常

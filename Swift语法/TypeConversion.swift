@@ -58,7 +58,7 @@ class TypeConversion: UIViewController {
         /** 检查类型*/
         // 用类型检查操作符（is）来检查一个实例是否属于特定子类型。若实例属于那个子类型，类型检查操作符返回 true，否则返回 false。
         
-       //  下面的例子定义了两个变量，movieCount 和 songCount，用来计算数组 library 中 Movie 和 Song 类型的实例数量：
+       //  下面的例子定义了两个变量，movieCount 和 songCount，用来计算数组 library 中 Movie 和 Song 类型的实例数量：⚠️
         var movieCount = 0
         var songCount = 0
 
@@ -74,8 +74,8 @@ class TypeConversion: UIViewController {
         // 打印“Media library contains 2 movies and 3 songs”
 
         
-        /** 向下转型*/
-        // 某类型的一个常量或变量可能在幕后实际上属于一个子类。当确定是这种情况时，你可以尝试用类型转换操作符（as? 或 as!）向下转到它的子类型。
+        /** 向下转型*///is用于检查类型，as用于类型转换。
+        // 某类型的一个常量或变量可能在幕后实际上属于一个子类。当确定是这种情况时，你可以尝试用类型转换操作符（as? 或 as!）向下转到它的子类型。⚠️
         //  因为向下转型可能会失败，类型转型操作符带有两种不同形式。条件形式 as? 返回一个你试图向下转成的类型的可选值。强制形式 as! 把试图向下转型和强制解包转换结果结合为一个操作。
         // 当你不确定向下转型可以成功时，用类型转换的条件形式（as?）。条件形式的类型转换总是返回一个可选值，并且若下转是不可能的，可选值将是 nil。这使你能够检查向下转型是否成功。
        // 只有你可以确定向下转型一定会成功时，才使用强制形式（as!）。当你试图向下转型为一个不正确的类型时，强制形式的类型转换会触发一个运行时错误。
@@ -103,7 +103,7 @@ class TypeConversion: UIViewController {
         /**
          Swift 为不确定类型提供了两种特殊的类型别名：
          Any 可以表示任何类型，包括函数类型。
-         AnyObject 可以表示任何类类型的实例
+         AnyObject 可以表示任何类类型的实例⚠️
          */
         // 只有当你确实需要它们的行为和功能时才使用 Any 和 AnyObject。最好还是在代码中指明需要使用的类型。
         
@@ -156,7 +156,7 @@ class TypeConversion: UIViewController {
         // a movie called Ghostbusters, dir. Ivan Reitman
         // Hello, Michael
         
-        // 注意：Any 类型可以表示所有类型的值，包括可选类型。Swift 会在你用 Any 类型来表示一个可选值的时候，给你一个警告。如果你确实想使用 Any 类型来承载可选值，你可以使用 as 操作符显式转换为 Any，如下所示：
+        // 注意：Any 类型可以表示所有类型的值，包括可选类型。Swift 会在你用 Any 类型来表示一个可选值的时候，给你一个警告。如果你确实想使用 Any 类型来承载可选值，你可以使用 as 操作符显式转换为 Any，如下所示：⚠️
         let optionalNumber: Int? = 3
         things.append(optionalNumber)        // 警告
         things.append(optionalNumber as Any) // 没有警告

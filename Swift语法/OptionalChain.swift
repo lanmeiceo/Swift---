@@ -31,7 +31,7 @@ class OptionalChain: UIViewController {
         // 假如你创建了一个新的 Person 实例，它的 residence 属性由于是可选类型而将被初始化为 nil，在下面的代码中，john 有一个值为 nil 的 residence 属性
         let john = Person()
         
-        // 如果使用叹号（!）强制解包获得这个 john 的 residence 属性中的 numberOfRooms 值，会触发运行时错误，因为这时 residence 没有可以解包的值：
+        // 如果使用叹号（!）强制解包获得这个 john 的 residence 属性中的 numberOfRooms 值，会触发运行时错误，因为这时 residence 没有可以解包的值：⚠️
         let roomCount = john.residence!.numberOfRooms // 这会引发运行时错误
         
         // 可选链式调用提供了另一种访问 numberOfRooms 的方式，使用问号（?）来替代原来的叹号（!）
@@ -241,7 +241,7 @@ class OptionalChain: UIViewController {
         }
         // 打印“John's building identifier is The Larches.”
         
-        // 如果要在该方法的返回值上进行可选链式调用，在方法的圆括号后面加上问号即可：
+        // 如果要在该方法的返回值上进行可选链式调用，在方法的圆括号后面加上问号即可：⚠️
         if let beginsWithThe =
             john2.residence?.address?.buildingIdentifier()?.hasPrefix("The") {
                 if beginsWithThe {

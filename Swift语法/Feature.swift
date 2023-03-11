@@ -20,7 +20,7 @@ class Feature: UIViewController {
          */
 
         /**
-         dynamicCallable
+         dynamicCallable⚠️
          该特性用于类、结构体、枚举或协议，以将该类型的实例视为可调用的函数。该类型必须实现 dynamicallyCall(withArguments:)、dynamicallyCall(withKeywordArguments:) 方法之一，或两者同时实现。
          你可以调用 dynamicCallable特性的实例，就像是调用一个任意数量参数的函数。
          */
@@ -38,8 +38,9 @@ class Feature: UIViewController {
         
         //dynamicallyCall(withArguments:) 方法的声明必须至少有一个参数遵循 ExpressibleByArrayLiteral 协议，如 [Int]，而返回值类型可以是任意类型。
         
-        // 如果实现 dynamicallyCall(withKeywordArguments:) 方法，则可以在动态方法调用中包含标签。
+        // 如果实现 dynamicallyCall(withKeywordArguments:) 方法，则可以在动态方法调用中包含标签。⚠️
         let repeatLabels = Repeater()
+        //⚠️
         print(repeatLabels(a: 1, b: 2, c: 3, b: 2, a: 1))
         // a
         // b b
@@ -47,14 +48,14 @@ class Feature: UIViewController {
         // b b
         // a
         
-        //如果你同时实现两种 dynamicallyCall 方法，则当在方法调用中包含关键字参数时，会调用 dynamicallyCall(withKeywordArguments:) 方法，否则调用 dynamicallyCall(withArguments:) 方法。
+        //如果你同时实现两种 dynamicallyCall 方法，则当在方法调用中包含关键字参数时，会调用 dynamicallyCall(withKeywordArguments:) 方法，否则调用 dynamicallyCall(withArguments:) 方法。⚠️
 
         //你只能调用参数和返回值与 dynamicallyCall 方法实现匹配的动态调用实例。在下面示例的调用无法编译，因为其 dynamicallyCall(withArguments:) 实现不接受 KeyValuePairs<String, String> 参数。
 //        repeatLabels(a: "four") // Error
         
         
         
-        /**dynamicMemberLookup
+        /**dynamicMemberLookup⚠️
          该特性用于类、结构体、枚举或协议，让其能在运行时查找成员。该类型必须实现 subscript(dynamicMemberLookup:) 下标。
          
          在显式成员表达式中，如果指定成员没有相应的声明，则该表达式被理解为对该类型的 subscript(dynamicMemberLookup:) 下标调用，将有关该成员的信息作为参数传递。下标接收参数既可以是键路径，也可以是成员名称字符串；如果你同时实现这两种方式的下标调用，那么以键路径参数方式为准。
@@ -74,14 +75,14 @@ class Feature: UIViewController {
         print(dynamic == equivalent)
         // 打印“true”
         
-       // 根据键路径来动态地查找成员，可用于创建一个包裹数据的包装类型，该类型支持在编译时期进行类型检查。例如：
+       // ⚠️根据键路径来动态地查找成员，可用于创建一个包裹数据的包装类型，该类型支持在编译时期进行类型检查。例如：
         let point = Point2(x: 381, y: 431)
         let wrapper = PassthroughWrapper(value: point)
         print(wrapper.x)
         
         
         /**
-         frozen
+         frozen⚠️
          
          针对枚举或者结构体的声明使用该特性，可以限制你对该类型的修改。它只有在编译迭代库时被允许使用。未来版本的库不能通过添加、删除或重新排序枚举的 case 或结构的存储实例属性来更改声明。在未冻结的类型上，这些操作都是允许的，但是他们破坏了冻结类型的 ABI 兼容性。
          
@@ -90,7 +91,7 @@ class Feature: UIViewController {
          */
         
         /**
-         inlinable
+         inlinable⚠️
          
          该特性用于函数、方法、计算属性、下标、便利构造器或析构器的声明，以将该声明的实现公开为模块公开接口的一部分。编译器允许在调用处把 inlinable 标记的符号替换为符号实现的副本。
          
@@ -169,6 +170,7 @@ struct TelephoneExchange {
 struct Repeater {
     func dynamicallyCall(withKeywordArguments pairs: KeyValuePairs<String, Int>) -> String {
         return pairs
+        //repeatElement它可以重复生成特定元素指定次数的无限序列⚠️
             .map { label, count in
                 repeatElement(label, count: count).joined(separator: " ")
             }

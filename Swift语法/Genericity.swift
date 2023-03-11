@@ -151,7 +151,7 @@ func swapTwoDoubles(_ a: inout Double, _ b: inout Double) {
 // 注意：在上面三个函数中，a 和 b 类型必须相同。如果 a 和 b 类型不同，那它们俩就不能互换值。Swift 是类型安全的语言，所以它不允许一个 String 类型的变量和一个 Double 类型的变量互换值。试图这样做将导致编译错误。
 
 /**泛型函数*/
-// 泛型函数可适用于任意类型，下面是函数 swapTwoInts(_:_:) 的泛型版本，命名为 swapTwoValues(_:_:)：
+// 泛型函数可适用于任意类型，下面是函数 swapTwoInts(_:_:) 的泛型版本，命名为 swapTwoValues(_:_:)：⚠️
 
 func swapTwoValues<T>(_ a: inout T, _ b: inout T) {
     let temporaryA = a
@@ -301,6 +301,7 @@ func findIndex<T: Equatable> (of valueToFind: T, in array:[T]) -> Int? {
 // 也可参考：https://www.jianshu.com/p/ac5185c89af1
 // 下面例子定义了一个 Container 协议，该协议定义了一个关联类型 Item：
 protocol Container {
+    //associatedtype 是一种用于声明协议中的关联类型的关键字。关联类型是一种在协议中使用的占位符类型，它表示协议的实现方可以在遵守协议时指定具体的类型。
     associatedtype Item
     mutating func append(_ item: Item)
     var count: Int { get }
@@ -470,6 +471,7 @@ extension Container where Item: Equatable {
 }
 
 // 上述示例中的泛型 where 子句要求 Item 遵循协议，但也可以编写一个泛型 where 子句去要求 Item 为特定类型。例如：
+//== 是一个泛型要求的约束标记，它表示Item 应该为 Double 类型。这个约束限制了 Container 泛型结构体中的 Item 类型必须为 Double 才能使用此扩展。⚠️
 extension Container where Item == Double {
     func average() -> Double {
          var sum = 0.0
@@ -532,13 +534,25 @@ protocol Container {
 }
 // 迭代器（Iterator）的泛型 where 子句要求：无论迭代器是什么类型，迭代器中的元素类型，必须和容器项目的类型保持一致。makeIterator() 则提供了容器的迭代器的访问接口。
 
-// 一个协议继承了另一个协议，你通过在协议声明的时候，包含泛型 where 子句，来添加了一个约束到被继承协议的关联类型。例如，下面的代码声明了一个 ComparableContainer 协议，它要求所有的 Item 必须是 Comparable 的。
+// 一个协议继承了另一个协议，你通过在协议声明的时候，包含泛型 where 子句，来添加了一个约束到被继承协议的关联类型。例如，下面的代码声明了一个 ComparableContainer 协议，它要求所有的 Item 必须是 Comparable 的。⚠️
 protocol ComparableContainer: Container where Item: Comparable { }
 
 
 /**泛型下标*/
 // 下标可以是泛型，它们能够包含泛型 where 子句。你可以在 subscript 后用尖括号来写占位符类型，你还可以在下标代码块花括号前写 where 子句。例如：
+/**
+ Swift中的Sequence是一个协议（Protocol），用于描述一组可以遍历的元素。所有满足Sequence协议的类型都可以使用for-in语句进行遍历操作。
+
+ Sequence协议包括以下要求：
+
+ 可以通过一个迭代器（Iterator）进行遍历操作，迭代器是一个可反复返回下一个元素的值的对象。
+
+ 可以提供一个方法makeIterator()，用于创建迭代器。
+
+ 可以返回一个Sequence的子序列（SubSequence），同时也要求子序列也遵循Sequence协议。
+ */
 extension Container {
+    ///⚠️⚠️
     subscript<Indices: Sequence>(indices: Indices) -> [Item]
         where Indices.Iterator.Element == Int {
             var result = [Item]()

@@ -40,7 +40,7 @@ class Extension: UIViewController {
 //          // 协议所需要的实现写在这里
 //        }
         
-        // 计算型属性
+        // 计算型属性⚠️
         // 扩展可以给现有类型添加计算型实例属性和计算型类属性。这个例子给 Swift 内建的 Double 类型添加了五个计算型实例属性，从而提供与距离单位相关工作的基本支持：
 
         let oneInch = 25.4.mm
@@ -87,9 +87,12 @@ class Extension: UIViewController {
         // 扩展可以给现有类型添加新的实例方法和类方法。在下面的例子中，给 Int 类型添加了一个新的实例方法叫做 repetitions：
         
         // 定义了这个扩展之后，你可以对任意整形数值调用 repetitions(task:) 方法，来执行对应次数的任务：
+        ///语法❓尾随闭包语法
         3.repetitions {
             print("Hello!")
         }
+        //3.repetitions (task: {print("Hello!")})常规的 自己写的 本来没有这个
+        
         // Hello!
         // Hello!
         // Hello!
@@ -153,6 +156,7 @@ extension Rect {
     init(center: Point, size: Size) {
         let originX = center.x - (size.width / 2)
         let originY = center.y - (size.height / 2)
+        /// 这里必须要加吗❓
         self.init(origin: Point(x: originX, y: originY), size: size)
         
     }
@@ -161,7 +165,7 @@ extension Rect {
 /**方法*/
 // 扩展可以给现有类型添加新的实例方法和类方法。在下面的例子中，给 Int 类型添加了一个新的实例方法叫做 repetitions：
 extension Int {
-    // repetitions(task:) 方法仅接收一个 () -> Void 类型的参数，它表示一个没有参数没有返回值的方法。
+    // repetitions(task:) 方法仅接收一个 () -> Void 类型的参数，它表示一个没有参数没有返回值的方法。这意味着你可以将一个不带参数且不返回值的函数作为参数传递给 repetitions 函数，它将在指定次数内执行该函数。⚠️
     func repetitions(task: () -> Void) {
         for _ in 0..<self {
             task()

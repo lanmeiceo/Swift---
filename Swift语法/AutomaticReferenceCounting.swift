@@ -265,7 +265,7 @@ class HTMLElement {
 
 //
 //lazy var someClosure = {
-//    [unowned self, weak delegate = self.delegate]
+//    [unowned self, weak delegate = self.delegate]⚠️
 //    (index: Int, stringToProcess: String) -> String in
 //    // 这里是闭包的函数体
 //}
@@ -290,6 +290,7 @@ class HTMLElementUnowned {
     let text: String?
 
     lazy var asHTML: () -> String = {
+        //⚠️
         [unowned self] in
         if let text = self.text {
             return "<\(self.name)>\(text)</\(self.name)>"
